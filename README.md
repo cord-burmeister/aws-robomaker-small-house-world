@@ -4,12 +4,19 @@
 
 **Visit the [AWS RoboMaker website](https://aws.amazon.com/robomaker/) to learn more about building intelligent robotic applications with Amazon Web Services.**
 
+## Adaption
+
+There are some changes required to use the scenario in *gazebo harmonic* or later. This fork describe the changes to run the branch *ros2* in the harmonic environment.
+
 ## Include the world from another package
 
-* Update .rosinstall to clone this repository and run `rosws update`
+Update *vcs* config file and add the following entry to load the package into the workspace.
 
-```
-- git: {local-name: src/aws-robomaker-small-house-world, uri: 'https://github.com/aws-robotics/aws-robomaker-small-house-world.git', version: ros2}
+``` yaml
+aws-robomaker-small-house-world:
+    type: git
+    url: https://github.com/cord-burmeister/aws-robomaker-small-house-world.git
+    version: ros2
 ```
 
 * Add the following to your launch file:
@@ -25,16 +32,18 @@
 
 ## Load directly into Gazebo (without ROS)
 
+After change working folder the *aws_robomaker_small_house_world* folder use the following command.
+
 ```bash
-export GAZEBO_MODEL_PATH=`pwd`/models
-gazebo worlds/small_house.world
+export GZ_SIM_RESOURCE_PATH=`pwd`/models:$GZ_SIM_RESOURCE_PATH
+gz sim worlds/small_house.world
 ```
 
 ## ROS Launch with Gazebo viewer (without a robot)
 
 ```bashexport
-# build for ROS
-source /opt/ros/dashing/setup.bash
+# build for ROS2
+source /opt/ros/humble/setup.bash
 source /usr/share/gazebo/setup.sh
 rosdep install --from-paths . --ignore-src -r -y
 colcon build
@@ -60,8 +69,8 @@ colcon build
 
 Picture frames use two textures for the model:
 
- - `aws_portraitA_01.png` - Frame texture
- - `aws_portraitA_02.png` - Picture texture
+* `aws_portraitA_01.png` - Frame texture
+* `aws_portraitA_02.png` - Picture texture
 
 To change a picture, one has to replace the `aws_portraitA_02.png` file. The new image will look best with same aspect ratio as the replaced image.
 
