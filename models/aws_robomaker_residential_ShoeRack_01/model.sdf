@@ -4,19 +4,18 @@
     <link name="link">
 
       <inertial>
-        <mass>6</mass>
-          <inertia>
-            <ixx>0.02</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>0.04</iyy>
-            <iyz>0</iyz>
-            <ixx>0.02</ixx>
-          </inertia>
+        <pose> -0.15583116 4.56433650 54.34335252 0 0 0 </pose>
+        <mass>6.00000000</mass>
+        <inertia>
+         <ixx>6739.52360379</ixx>
+         <ixy>0.10988810</ixy>
+         <ixz>5.19853996</ixz>
+         <iyy>10277.31818735</iyy>
+         <iyz>-9.94880141</iyz>
+         <izz>4410.92037754 </izz>
+        </inertia>
       </inertial>
-
       <collision name="collision">
-
         <geometry>
           <mesh>
             <uri>model://aws_robomaker_residential_ShoeRack_01/meshes/aws_ShoeRack_01_collision.DAE</uri>
@@ -43,14 +42,13 @@
       </collision>
 
       <visual name="visual">
-	    <geometry>
-          <mesh>
-            <uri>model://aws_robomaker_residential_ShoeRack_01/meshes/aws_ShoeRack_01_visual.DAE</uri>
-          </mesh>
+        <geometry>
+            <mesh>
+              <uri>model://aws_robomaker_residential_ShoeRack_01/meshes/aws_ShoeRack_01_visual.DAE</uri>
+            </mesh>
         </geometry>
-      <meta> <layer> 1 </layer></meta>
-</visual>
-
+        <meta> <layer> 1 </layer></meta>
+      </visual>
     </link>
   </model>
 </sdf>

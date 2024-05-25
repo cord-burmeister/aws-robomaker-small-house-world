@@ -559,7 +559,7 @@
         <pose frame=''>8.702731 -1.032031 0 0 -0 -1.563499</pose>
 	</model>
 
-    	<model name='SeasoningBox_01_001'>
+   	<model name='SeasoningBox_01_001'>
         <static>true</static>    
         <include>
             <uri>model://aws_robomaker_residential_SeasoningBox_01</uri>
@@ -567,18 +567,16 @@
         <pose frame=''>9.107968 -2.651726 0.902458 -0.000006 0.000034 0.001290</pose>
 	</model>
 
-        <!--     
-
-    	<model name='ShoeRack_01_001'>
+   	<!-- <model name='ShoeRack_01_001'>
         <static>true</static>    
         <include>
             <uri>model://aws_robomaker_residential_ShoeRack_01</uri>
         </include>
         <pose frame=''>4.297978 -5.173566 0 0 -0 0</pose>
-	</model>
--->
+	</model> -->
 
-<model name='SofaC_01_001'>
+
+    <model name='SofaC_01_001'>
         <static>true</static>    
         <include>
             <uri>model://aws_robomaker_residential_SofaC_01</uri>
