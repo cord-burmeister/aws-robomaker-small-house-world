@@ -4,13 +4,16 @@
 
 **Visit the [AWS RoboMaker website](https://aws.amazon.com/robomaker/) to learn more about building intelligent robotic applications with Amazon Web Services.**
 
-# Include the world from another package
+## Include the world from another package
 
 * Update .rosinstall to clone this repository and run `rosws update`
+
 ```
 - git: {local-name: src/aws-robomaker-small-house-world, uri: 'https://github.com/aws-robotics/aws-robomaker-small-house-world.git', version: ros2}
 ```
+
 * Add the following to your launch file:
+
 ```python
     small_house = launch.actions.IncludeLaunchDescription(
         launch.launch_description_sources.PythonLaunchDescriptionSource(
@@ -20,14 +23,16 @@
                 'small_house.launch.py')))
 ```
 
-# Load directly into Gazebo (without ROS)
+## Load directly into Gazebo (without ROS)
+
 ```bash
 export GAZEBO_MODEL_PATH=`pwd`/models
 gazebo worlds/small_house.world
 ```
 
-# ROS Launch with Gazebo viewer (without a robot)
-```bash
+## ROS Launch with Gazebo viewer (without a robot)
+
+```bashexport
 # build for ROS
 source /opt/ros/dashing/setup.bash
 source /usr/share/gazebo/setup.sh
@@ -39,7 +44,8 @@ source install/setup.sh
 ros2 launch aws_robomaker_small_house_world small_house.launch.py gui:=true
 ```
 
-# Building
+## Building
+
 Include this as a .rosinstall dependency in your SampleApplication simulation workspace. `colcon build` will build this repository.
 
 To build it outside an application, note there is no robot workspace. It is a simulation workspace only.
@@ -50,9 +56,10 @@ rosdep install --from-paths . --ignore-src -r -y
 colcon build
 ```
 
-# How to Replace Photos in Picture Frames
+## How to Replace Photos in Picture Frames
 
 Picture frames use two textures for the model:
+
  - `aws_portraitA_01.png` - Frame texture
  - `aws_portraitA_02.png` - Picture texture
 
@@ -83,7 +90,7 @@ Below is a table showing portrait type to picture resolution data and custom ima
 | PortraitE_01 | 700x1024 | maggie |
 | PortraitE_02 | 700x1024 | iftach |
 
-# Disclaimer
+## Disclaimer
 
 All objects in the scene should be static objects as intended for this sample app.
 If there is a need for some of objects to be non-static, change their 'static' flag in the world file to 'false', 

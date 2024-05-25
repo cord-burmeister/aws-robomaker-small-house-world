@@ -27,16 +27,16 @@ from ament_index_python.packages import get_package_share_directory
 def generate_launch_description():
     world_file_name = 'small_house.world'
     package_dir = get_package_share_directory('aws_robomaker_small_house_world')
-    gazebo_ros = get_package_share_directory('gazebo_ros')
+    pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
 
     gazebo_client = launch.actions.IncludeLaunchDescription(
 	launch.launch_description_sources.PythonLaunchDescriptionSource(
-            os.path.join(gazebo_ros, 'launch', 'gzclient.launch.py')),
+            os.path.join(pkg_ros_gz_sim, 'launch', 'gzclient.launch.py')),
         condition=launch.conditions.IfCondition(launch.substitutions.LaunchConfiguration('gui'))
      )
     gazebo_server = launch.actions.IncludeLaunchDescription(
         launch.launch_description_sources.PythonLaunchDescriptionSource(
-            os.path.join(gazebo_ros, 'launch', 'gzserver.launch.py'))
+            os.path.join(pkg_ros_gz_sim, 'launch', 'gzserver.launch.py'))
     )
 
     return LaunchDescription([
