@@ -22,6 +22,14 @@ import launch
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from ament_index_python.packages import get_package_share_directory
+from launch.substitutions import (
+    Command,
+    PythonExpression,
+    FindExecutable,
+    PathJoinSubstitution,
+    LaunchConfiguration,
+    TextSubstitution,
+)
 
 
 def generate_launch_description():
@@ -29,16 +37,16 @@ def generate_launch_description():
     package_dir = get_package_share_directory('aws_robomaker_small_house_world')
     pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
 
-    gazebo_client = launch.actions.IncludeLaunchDescription(
-	launch.launch_description_sources.PythonLaunchDescriptionSource(
-            os.path.join(pkg_ros_gz_sim, 'launch', 'gzclient.launch.py')),
-        condition=launch.conditions.IfCondition(launch.substitutions.LaunchConfiguration('gui'))
-     )
-    gazebo_server = launch.actions.IncludeLaunchDescription(
+  # Setup to launch the simulator and Gazebo world
+    gz_sim = launch.actions.IncludeLaunchDescription(
         launch.launch_description_sources.PythonLaunchDescriptionSource(
-            os.path.join(pkg_ros_gz_sim, 'launch', 'gzserver.launch.py'))
+            os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py')),
+            launch_arguments={'gz_args': PathJoinSubstitution([
+            package_dir,
+            'worlds',
+            'small_house.world'
+        ])}.items(),
     )
-
     return LaunchDescription([
         DeclareLaunchArgument(
           'world',
@@ -55,8 +63,7 @@ def generate_launch_description():
         DeclareLaunchArgument('state',
             default_value='true',
             description='Set "true" to load "libgazebo_ros_state.so"'),
-        gazebo_server,
-        gazebo_client,
+        gz_sim,
     ])
 
 

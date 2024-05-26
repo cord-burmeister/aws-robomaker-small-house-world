@@ -44,11 +44,10 @@ gz sim worlds/small_house.world
 ```bashexport
 # build for ROS2
 source /opt/ros/humble/setup.bash
-source /usr/share/gazebo/setup.sh
 rosdep install --from-paths . --ignore-src -r -y
 colcon build
 
-# run in ROS
+# run in ROS2
 source install/setup.sh
 ros2 launch aws_robomaker_small_house_world small_house.launch.py gui:=true
 ```
