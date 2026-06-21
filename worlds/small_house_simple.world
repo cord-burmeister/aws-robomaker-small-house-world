@@ -162,14 +162,15 @@
         </include>
         <pose frame=''>6.001449 -5.549002 0 0 -0 0</pose>
 	</model>
-	
-	<model name='Dumbbell_01_001'>
+
+    <!-- LIDAR only can not avoid collisions-->
+	<!-- <model name='Dumbbell_01_001'>
         <static>true</static>    
         <include>
             <uri>model://aws_robomaker_residential_Dumbbell_01</uri>
         </include>
         <pose frame=''>2.512849 2.717787 0.002183 0 -0 0</pose>
-	</model>
+	</model> -->
 	<model name='FoldingDoor_01_001'>
         <static>true</static>    
         <include>
